@@ -22,7 +22,7 @@ function getSeason(date) {
 
   const month = date.getMonth();
 
-  if (month === 11 || month < 2) {
+  if (month === 11 || (month >= 0 && month < 2)) {
     return 'winter';
   } else if (month >= 2 && month < 5) {
     return 'spring';

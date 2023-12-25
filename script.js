@@ -1,19 +1,20 @@
-function createDreamTeam(members) {
-  if (!Array.isArray(members)) {
-    return false;
-  }
+function renameFiles(names) {
+  const obj = {};
 
-  const sort = members.filter((value) => typeof value === 'string');
+  return names.map((value) => {
+    let originalName = value;
+    let newName = value;
+    let count = obj[newName] || 0;
 
-  let firstIndex = [];
-  sort.forEach((value) => {
-    const str = value.trim();
-    firstIndex.push(str[0].toUpperCase())
+    while (obj[newName] !== undefined) {
+      count++;
+      newName = `${originalName}(${count})`;
+    }
+
+    obj[newName] = 0;
+    console.log(newName);
+    return newName;
   });
+};
 
-  console.log(firstIndex.sort().join(''));
-}
-
-// createDreamTeam(['Olivia', 1111, 'Lily', 'Oscar', true, null]) // => 'LOO'
-createDreamTeam([['David Abram'],['Robin Attfield'],'Thomas Berry',['Paul R.Ehrlich'],'donna Haraway',' BrIaN_gOodWiN  ',{0: 'Serenella Iovino'},'Erazim Kohak','  val_plumwood',]); // 'BDETV'
-// 'BDETV'
+renameFiles(['doc', 'doc', 'image', 'doc(1)', 'doc']) //['doc', 'doc(1)', 'image', 'doc(1)(1)', 'doc(2)']
